@@ -78,11 +78,11 @@
         {
           "title": "Pet API Tests",
           "file": "tests/pet-shop.spec.ts",
-          "line": 4,
+          "line": 6,
           "column": 6,
           "specs": [
             {
-              "title": "Should fetch all pets successfully",
+              "title": "Should fetch all pets successfully when GET all is called",
               "ok": true,
               "tags": [],
               "tests": [
@@ -96,21 +96,53 @@
                     {
                       "workerIndex": 0,
                       "status": "passed",
-                      "duration": 60,
+                      "duration": 66,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-09T12:19:19.669Z",
+                      "startTime": "2024-09-09T12:52:02.274Z",
                       "attachments": []
                     }
                   ],
                   "status": "expected"
                 }
               ],
-              "id": "928632110b171ec4d854-0a38700af8f7dcddcda6",
+              "id": "928632110b171ec4d854-cb36c2c3185dfc804e6e",
               "file": "tests/pet-shop.spec.ts",
-              "line": 7,
+              "line": 8,
+              "column": 9
+            },
+            {
+              "title": "Should add a new pet successfully when Post pet is called",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "staging",
+                  "projectName": "staging",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "status": "passed",
+                      "duration": 47,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2024-09-09T12:52:02.348Z",
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "928632110b171ec4d854-91bfcfb72f7d42ccb267",
+              "file": "tests/pet-shop.spec.ts",
+              "line": 18,
               "column": 9
             }
           ]
@@ -120,9 +152,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-09-09T12:19:19.371Z",
-    "duration": 372.67600000000004,
-    "expected": 1,
+    "startTime": "2024-09-09T12:52:02.020Z",
+    "duration": 392.659,
+    "expected": 2,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

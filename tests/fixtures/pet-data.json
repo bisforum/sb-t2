@@ -1,0 +1,12 @@
+{
+    "newPet": {
+        "name": "Buddy",
+        "type": "Dog",
+        "age": 4
+    },
+    "updatePet": {
+        "name": "Buddy",
+        "type": "Dog",
+        "age": 5
+    }
+}
