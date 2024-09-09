@@ -1,0 +1,22 @@
+{
+  "name": "masood-sb-task2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:staging": "npx playwright test --project=staging",
+    "test:production": "npx playwright test --project=production"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.37.0"
+  },
+  "playwright": {
+    "use": {
+      "headless": true
+    },
+    "keywords": [],
+    "author": "masood ghasemzadeh",
+    "license": "ISC",
+    "description": ""
+  }
+}
