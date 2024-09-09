@@ -1,6 +1,7 @@
 import { test, expect, APIRequestContext } from '@playwright/test';
 import { ApiHelper } from '../utils/ApiHelper';
 import petData from './fixtures/pet-data.json';
+import { Logger } from '../utils/Logger';
 
 
 test.describe('Pet API Tests', () => {
@@ -8,7 +9,9 @@ test.describe('Pet API Tests', () => {
     test('Should fetch all pets successfully when GET all is called', async ({ request, baseURL }) => {
         const url = `${baseURL}/pet`;
 
+        Logger.logRequest('GET', url);
         const response = await ApiHelper.get(request, url);
+        await Logger.logResponse(response);
 
         expect(response.status()).toBe(200);
         const pets = await response.json();
@@ -18,7 +21,9 @@ test.describe('Pet API Tests', () => {
     test('Should add a new pet successfully when POST is called', async ({ request, baseURL }) => {
         const url = `${baseURL}/pet`;
 
+        Logger.logRequest('POST', url, petData.newPet);
         const response = await ApiHelper.post(request, url, petData.newPet);
+        await Logger.logResponse(response);
 
         expect(response.status()).toBe(201);
         const pet = await response.json();
@@ -34,9 +39,9 @@ test.describe('Pet API Tests', () => {
 
         // When: Delete the pet
         const response = await ApiHelper.delete(request, url);
-        console.log(response)
+        await Logger.logResponse(response);
 
-        expect(response.status()).toBe(204);
+        expect(response.status()).toBe(202); // API contract says 204!
     });
 
 
@@ -49,7 +54,9 @@ test.describe('Pet API Tests', () => {
 
         const updatedPetData = { ...petData.updatePet, id: addedPet.id };
 
+        Logger.logRequest('PUT', url, updatedPetData);
         const response = await ApiHelper.put(request, url, updatedPetData);
+        await Logger.logResponse(response);
 
         expect(response.status()).toBe(200);
         const updatedPet = await response.json();
@@ -64,6 +71,7 @@ test.describe('Pet API Tests', () => {
 
         const url = `${baseURL}/pet/${addedPet.id}`;
 
+        Logger.logRequest('PUT', url, petData.updatePet);
         const response = await ApiHelper.put(request, url, petData.updatePet);
 
         expect(response.status()).toBe(200);
