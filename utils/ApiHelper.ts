@@ -23,4 +23,15 @@ export class ApiHelper {
         }
     }
 
+    static async delete(request: APIRequestContext, url: string): Promise<APIResponse> {
+        try {
+            const response = await request.delete(url);
+            expect(response.ok()).toBeTruthy();
+            return response;
+        } catch (error) {
+            console.error(`DELETE ${url} failed:`, error);
+            throw error;
+        }
+    }
+
 }

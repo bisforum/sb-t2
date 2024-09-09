@@ -82,7 +82,7 @@
           "column": 6,
           "specs": [
             {
-              "title": "Should fetch all pets successfully when GET all is called",
+              "title": "Should delete a pet by ID",
               "ok": true,
               "tags": [],
               "tests": [
@@ -94,55 +94,27 @@
                   "projectName": "staging",
                   "results": [
                     {
-                      "workerIndex": 0,
+                      "workerIndex": 14,
                       "status": "passed",
-                      "duration": 66,
+                      "duration": 81,
                       "errors": [],
-                      "stdout": [],
+                      "stdout": [
+                        {
+                          "text": "APIResponse: 202 Accepted\n  X-Powered-By: Express\n  Content-Type: application/json; charset=utf-8\n  Content-Length: 59\n  ETag: W/\"3b-S2EfqU6a+2yMGHYv8qUeB93ZdxY\"\n  Date: Mon, 09 Sep 2024 13:13:10 GMT\n  Connection: keep-alive\n  Keep-Alive: timeout=5\n"
+                        }
+                      ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-09T12:52:02.274Z",
+                      "startTime": "2024-09-09T13:13:10.564Z",
                       "attachments": []
                     }
                   ],
                   "status": "expected"
                 }
               ],
-              "id": "928632110b171ec4d854-cb36c2c3185dfc804e6e",
+              "id": "928632110b171ec4d854-2a8b6526b2c2c677f27a",
               "file": "tests/pet-shop.spec.ts",
-              "line": 8,
-              "column": 9
-            },
-            {
-              "title": "Should add a new pet successfully when Post pet is called",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "staging",
-                  "projectName": "staging",
-                  "results": [
-                    {
-                      "workerIndex": 0,
-                      "status": "passed",
-                      "duration": 47,
-                      "errors": [],
-                      "stdout": [],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2024-09-09T12:52:02.348Z",
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "928632110b171ec4d854-91bfcfb72f7d42ccb267",
-              "file": "tests/pet-shop.spec.ts",
-              "line": 18,
+              "line": 29,
               "column": 9
             }
           ]
@@ -152,9 +124,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-09-09T12:52:02.020Z",
-    "duration": 392.659,
-    "expected": 2,
+    "startTime": "2024-09-09T13:13:09.947Z",
+    "duration": 713.347000000067,
+    "expected": 1,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

@@ -25,4 +25,18 @@ test.describe('Pet API Tests', () => {
         expect(pet.name).toBe(petData.newPet.name);
     });
 
+    test('Should delete a pet by ID', async ({ request, baseURL }) => {
+        // Given: A pet exists
+        const addUrl = `${baseURL}/pet`;
+        const addResponse = await ApiHelper.post(request, addUrl, petData.newPet);
+        const addedPet = await addResponse.json();
+        const url = `${baseURL}/pet/${addedPet.id}`;
+
+        // When: Delete the pet
+        const response = await ApiHelper.delete(request, url);
+        console.log(response)
+
+        expect(response.status()).toBe(204);
+    });
+
 });
