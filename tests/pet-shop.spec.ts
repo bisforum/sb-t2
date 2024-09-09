@@ -39,4 +39,37 @@ test.describe('Pet API Tests', () => {
         expect(response.status()).toBe(204);
     });
 
+
+    test('Should update a pet by ID via request body', async ({ request, baseURL }) => {
+        const url = `${baseURL}/pet`;
+
+        // Given: A pet exists
+        const addResponse = await ApiHelper.post(request, url, petData.newPet);
+        const addedPet = await addResponse.json();
+
+        const updatedPetData = { ...petData.updatePet, id: addedPet.id };
+
+        const response = await ApiHelper.put(request, url, updatedPetData);
+
+        expect(response.status()).toBe(200);
+        const updatedPet = await response.json();
+        expect(updatedPet.age).toBe(petData.updatePet.age);
+    });
+
+    test('Should update a pet by ID via path parameter', async ({ request, baseURL }) => {
+        // Given: A pet exists
+        const addUrl = `${baseURL}/pet`;
+        const addResponse = await ApiHelper.post(request, addUrl, petData.newPet);
+        const addedPet = await addResponse.json();
+
+        const url = `${baseURL}/pet/${addedPet.id}`;
+
+        const response = await ApiHelper.put(request, url, petData.updatePet);
+
+        expect(response.status()).toBe(200);
+        const updatedPet = await response.json();
+        expect(updatedPet.age).toBe(petData.updatePet.age);
+    });
+
+
 });

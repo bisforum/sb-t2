@@ -82,7 +82,7 @@
           "column": 6,
           "specs": [
             {
-              "title": "Should delete a pet by ID",
+              "title": "Should update a pet by ID via path parameter",
               "ok": true,
               "tags": [],
               "tests": [
@@ -94,27 +94,23 @@
                   "projectName": "staging",
                   "results": [
                     {
-                      "workerIndex": 14,
+                      "workerIndex": 16,
                       "status": "passed",
-                      "duration": 81,
+                      "duration": 59,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "APIResponse: 202 Accepted\n  X-Powered-By: Express\n  Content-Type: application/json; charset=utf-8\n  Content-Length: 59\n  ETag: W/\"3b-S2EfqU6a+2yMGHYv8qUeB93ZdxY\"\n  Date: Mon, 09 Sep 2024 13:13:10 GMT\n  Connection: keep-alive\n  Keep-Alive: timeout=5\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2024-09-09T13:13:10.564Z",
+                      "startTime": "2024-09-09T13:21:28.898Z",
                       "attachments": []
                     }
                   ],
                   "status": "expected"
                 }
               ],
-              "id": "928632110b171ec4d854-2a8b6526b2c2c677f27a",
+              "id": "928632110b171ec4d854-0be003906bf2ad0f10d6",
               "file": "tests/pet-shop.spec.ts",
-              "line": 29,
+              "line": 59,
               "column": 9
             }
           ]
@@ -124,8 +120,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2024-09-09T13:13:09.947Z",
-    "duration": 713.347000000067,
+    "startTime": "2024-09-09T13:21:28.408Z",
+    "duration": 562.1780000003055,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

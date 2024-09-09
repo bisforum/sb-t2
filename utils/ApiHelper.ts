@@ -33,5 +33,15 @@ export class ApiHelper {
             throw error;
         }
     }
+    static async put(request: APIRequestContext, url: string, data: Record<string, any>): Promise<APIResponse> {
+        try {
+            const response = await request.put(url, { data });
+            expect(response.ok()).toBeTruthy();
+            return response;
+        } catch (error) {
+            console.error(`PUT ${url} failed:`, error);
+            throw error;
+        }
+    }
 
 }
