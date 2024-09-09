@@ -30,6 +30,27 @@ test.describe('Pet API Tests', () => {
         expect(pet.name).toBe(petData.newPet.name);
     });
 
+    test('Should return 404 when trying to add a new pet without a name', async ({ request, baseURL }) => {
+        const url = `${baseURL}/pet`;
+
+        const invalidPetData = {
+            type: "Dog",
+            age: 3
+        }; // Missing "name" field
+
+        Logger.logRequest('POST', url, invalidPetData);
+        const response = await ApiHelper.post(request, url, invalidPetData);
+        await Logger.logResponse(response);
+
+        expect(response.status()).toBe(404);
+        const errorResponse = await response.json();
+
+        expect(errorResponse.type).toBe('Parameter Exception');
+        expect(errorResponse.errorMessage).toBe('Parameter \'name\' not set.');
+    });
+
+
+
     test('Should delete a pet by ID', async ({ request, baseURL }) => {
         // Given: A pet exists
         const addUrl = `${baseURL}/pet`;
@@ -42,6 +63,20 @@ test.describe('Pet API Tests', () => {
         await Logger.logResponse(response);
 
         expect(response.status()).toBe(202); // API contract says 204!
+    });
+    test('Should return 404 when trying to delete a non-existent pet by ID', async ({ request, baseURL }) => {
+        const neverExistingId = 0 // Assuming 0 is a non-existent ID
+        const url = `${baseURL}/pet/${neverExistingId}`;
+
+        Logger.logRequest('DELETE', url);
+        const response = await ApiHelper.delete(request, url);
+        await Logger.logResponse(response);
+
+        expect(response.status()).toBe(404);
+        const errorResponse = await response.json();
+
+        expect(errorResponse.type).toBe('API Exception');
+        expect(errorResponse.errorMessage).toBe(`Pet with id \'${neverExistingId}\' was not found.`);
     });
 
 
@@ -62,6 +97,26 @@ test.describe('Pet API Tests', () => {
         const updatedPet = await response.json();
         expect(updatedPet.age).toBe(petData.updatePet.age);
     });
+    test('Should return 404 when trying to update a non-existent pet by ID in request body', async ({ request, baseURL }) => {
+        const url = `${baseURL}/pet`;
+
+        const updatePetData = {
+            id: 99999, // Assuming 99999 is a non-existent ID
+            name: "Buddy",
+            type: "Dog",
+            age: 5
+        };
+
+        Logger.logRequest('PUT', url, updatePetData);
+        const response = await ApiHelper.put(request, url, updatePetData);
+        await Logger.logResponse(response);
+
+        expect(response.status()).toBe(404);
+        const errorResponse = await response.json();
+
+        expect(errorResponse.type).toBe('API Exception');
+        expect(errorResponse.errorMessage).toBe('Pet not found.');
+    });
 
     test('Should update a pet by ID via path parameter', async ({ request, baseURL }) => {
         // Given: A pet exists
@@ -77,6 +132,25 @@ test.describe('Pet API Tests', () => {
         expect(response.status()).toBe(200);
         const updatedPet = await response.json();
         expect(updatedPet.age).toBe(petData.updatePet.age);
+    });
+    test('Should return 404 when trying to update a non-existent pet by ID', async ({ request, baseURL }) => {
+        const url = `${baseURL}/pet/99999`; // Assuming 99999 is a non-existent ID
+
+        const updatePetData = {
+            name: "Buddy",
+            type: "Dog",
+            age: 5
+        };
+
+        Logger.logRequest('PUT', url, updatePetData);
+        const response = await ApiHelper.put(request, url, updatePetData);
+        await Logger.logResponse(response);
+
+        expect(response.status()).toBe(404);
+        const errorResponse = await response.json();
+
+        expect(errorResponse.type).toBe('API Exception');
+        expect(errorResponse.errorMessage).toBe('Pet not found.');
     });
 
 
